@@ -1,6 +1,13 @@
-NPC_ID = 60000
+-- Ariel Camilo, 18 Octubre 2022.
+--[[
+	Para que este Script pueda funcionar correctamente,
+	1. Pon el ID del NPC que correrá el Script.
+	2. Coloca este archivo en la carpeta lua_scripts del server.
+	3. Ejecuta el comando "reload eluna" en la consola, esto creará la tabla necesaria en la DB, y listo. También funcionará el reiniciar el servidor.
+]]
+NPC_ID = 00000 --> Asigna el ID del NPC que correrá este Script.
 
-	function CC(A)  local f=A
+	function CC(A)  local f=A --------> Función para colocar la coma en números mayores a 3 cifras.
   		while true do f, k = string.gsub(f, "^(-?%d+)(%d%d%d)", '%1,%2')
     	if (k==0) then break end end
   		return f
@@ -8,9 +15,9 @@ NPC_ID = 60000
 
 local function Click(e,P,U) local g=P:GetGUIDLow()
 	P:GossipClearMenu()
-	P:GossipMenuAddItem( 1, "Realizar depósito.", 	10, 1 ,true, "¿Cuánto oro deseas depositar?")
-	P:GossipMenuAddItem( 6, "Retirar dinero.", 		10, 2, true, "¿Cuánto oro deseas retirar?" )
-	P:GossipMenuAddItem( 4, "Consultar balance.", 	10, 3, nil, nil, nil)
+	P:GossipMenuAddItem( 1, "Realizar depósito.", 10, 1 ,true, "¿Cuánto oro deseas depositar?")
+	P:GossipMenuAddItem( 6, "Retirar dinero.",    10, 2, true, "¿Cuánto oro deseas retirar?" )
+	P:GossipMenuAddItem( 4, "Consultar balance.", 10, 3, nil, nil, nil)
 	P:GossipSendMenu(1,U,MenuId)
 end
 -----------------------------------------------------------------------------------------------------------------------
