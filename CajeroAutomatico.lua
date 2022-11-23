@@ -1,4 +1,4 @@
--- Ariel Camilo, 18 Octubre 2022.
+-- Ariel Camilo, 23 Noviembre 2022.
 --[[
 	Para que este Script pueda funcionar correctamente,
 	1. Pon el ID del NPC que correrá el Script.
@@ -86,7 +86,9 @@ local function PlayerLogIn(e,P) local g=P:GetGUIDLow()
 	CharDBExecute("INSERT IGNORE INTO `aa_cajero` (`player`,`money`) VALUES ("..g..", 0)")
 end
 -----------------------------------------------------------------------------------------------------------------------
-RegisterCreatureGossipEvent(NPC_ID, 1, Click )
-RegisterCreatureGossipEvent(NPC_ID, 2, MenuClick )
-RegisterServerEvent(33, ElunaReload )
-RegisterPlayerEvent(3, PlayerLogIn )
+local function Delete(Ev,PGuid)
+	CharDBExecute("DELETE FROM `aa_cajero` WHERE `player` = "..PGuid.."")
+end
+-----------------------------------------------------------------------------------------------------------------------
+RegisterCreatureGossipEvent(NPC_ID, 1, Click)  RegisterCreatureGossipEvent(NPC_ID, 2, MenuClick)
+RegisterServerEvent(33, ElunaReload)  RegisterPlayerEvent(3, PlayerLogIn)  RegisterPlayerEvent(2, Delete)
